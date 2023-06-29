@@ -47,7 +47,6 @@ function myReduce(collection, callback, acc=0){
   }
 }
 
-
 function myFind(collection, predicate){
   return collection.find((item)=>{
     return predicate(item)
@@ -76,15 +75,42 @@ function myFilter(collection, predicate){
 }
 
 function mySize(collection){
+  if(Array.isArray(collection)){
+    return collection.length
+  }else if(typeof collection === 'object'){
+    return Object.values(collection).length
+  }
 
 }
 
-function myFirst(array, [n]){
-
-
+function myFirst(array, n=1){
+  let myNewArray = []
+  if(n<=1){
+    return array[0]
+  }else if(n>1){
+    for(let i = 0; i<n; i++){
+      myNewArray.push(array[i])
+    } 
+    return myNewArray
+  }
    
+  
+}// console.log(myFirst([5, 4, 3, 2, 1],3));
+
+function myLast(array, n=1){
+  //let myNewArray = []
+  if(n==1){
+    return array[array.length-1]
+  }else {
+    return array.slice(-n)
+  }
+
+}console.log(myLast([5, 4, 3, 2, 1],3));
+
+function myKeys(object){
+    return Object.keys(object)
 }
 
-function myLast(array, [n]){
-
+function myValues(object){
+  return Object.values(object)
 }
